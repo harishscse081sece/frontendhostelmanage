@@ -34,7 +34,7 @@ const Login = ({ onLoginSuccess }) => {
         setLoading(true);
 
         try {
-            const endpoint = 'http://localhost:3000/auth/student';
+            const endpoint = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/student`;
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {

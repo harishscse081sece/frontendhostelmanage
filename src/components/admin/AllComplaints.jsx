@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import Header from '../Header';
 import ComplaintManager from './ComplaintManager';
+import API_URL from '../../config/api';
 
 const AllComplaints = () => {
     const [complaints, setComplaints] = useState([]);
@@ -14,7 +15,7 @@ const AllComplaints = () => {
         const token = localStorage.getItem('token');
         
         try {
-            const response = await fetch('http://localhost:3000/complaints', {
+            const response = await fetch(`${API_URL}/complaints`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

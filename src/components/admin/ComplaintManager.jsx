@@ -1,11 +1,12 @@
 import React from 'react';
+import API_URL from '../../config/api';
 
 const ComplaintManager = ({ complaint, onUpdate }) => {
     const handleStatusUpdate = async (newStatus) => {
         const token = localStorage.getItem('token');
         
         try {
-            const response = await fetch(`http://localhost:3000/complaints/${complaint._id}`, {
+            const response = await fetch(`${API_URL}/complaints/${complaint._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
