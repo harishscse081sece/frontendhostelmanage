@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import API_URL from '../config/api';
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
@@ -34,7 +35,7 @@ const Login = ({ onLoginSuccess }) => {
         setLoading(true);
 
         try {
-            const endpoint = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/student`;
+            const endpoint = `${API_URL}/auth/student`;
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
