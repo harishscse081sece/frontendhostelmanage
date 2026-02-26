@@ -10,6 +10,7 @@ import MenuManager from './components/admin/MenuManager';
 import AllComplaints from './components/admin/AllComplaints';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Profile from './components/shared/Profile';
 import RoomInfo from './components/shared/RoomInfo';
 import FeeManagement from './components/shared/FeeManagement';
@@ -59,7 +60,10 @@ const App = () => {
   const renderPage = () => {
     if (!isLoggedIn) {
       if (currentPage === 'login') {
-        return <Login onLoginSuccess={handleLoginSuccess} />;
+        return <Login onLoginSuccess={handleLoginSuccess} changePage={changePage} />;
+      }
+      if (currentPage === 'signup') {
+        return <Signup changePage={changePage} />;
       }
       return <HomePage changePage={changePage} />;
     }
