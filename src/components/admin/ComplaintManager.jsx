@@ -6,6 +6,14 @@ const ComplaintManager = ({ complaint, onUpdate }) => {
     const handleStatusUpdate = async (newStatus) => {
         const token = localStorage.getItem('token');
         
+        console.log('Updating complaint:', complaint._id, 'to status:', newStatus);
+        console.log('Token:', token ? 'exists' : 'missing');
+        
+        if (!token) {
+            toast.error('Please login again');
+            return;
+        }
+        
         try {
             const response = await fetch(`${API_URL}/complaints/${complaint._id}`, {
                 method: 'PUT',
@@ -16,14 +24,19 @@ const ComplaintManager = ({ complaint, onUpdate }) => {
                 body: JSON.stringify({ status: newStatus })
             });
             
+            const data = await response.json();
+            console.log('Response:', response.status, data);
+            
             if (response.ok) {
-                toast.success('Status updated successfully!');
+                toast.success('✅ Complaint marked as solved!');
                 onUpdate();
             } else {
-                toast.error('Failed to update status');
+                toast.error(data.error || 'Failed to update status');
+                console.error('Update failed:', data);
             }
         } catch (error) {
-            toast.error('Error updating status');
+            console.error('Error:', error);
+            toast.error('Error updating status: ' + error.message);
         }
     };
 
