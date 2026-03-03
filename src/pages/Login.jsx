@@ -41,7 +41,7 @@ const Login = ({ onLoginSuccess, changePage }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, phone }),
+                body: JSON.stringify({ email, password, phone, role }),
             });
 
             const data = await response.json();
